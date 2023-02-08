@@ -1,0 +1,124 @@
+@import "variables";
+@import "mixins";
+@import "base";
+@import "functions";
+
+
+.wrapper {
+	width: 100%;	
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+canvas {
+    @include border($base-color, 2px);
+    padding: padding("all", 10px);
+	color: $base-color;
+}
+
+h1 {
+	@include header;
+    @include font-size($font-size-large);
+}
+
+h2 {
+	@include header;
+    @include font-size($font-size-medium);
+}
+
+
+p {
+    @include font-size($font-size-small);
+}
+
+#alphabet {
+	margin: 15px auto;
+	max-width: 900px;
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+	li {
+        @include border($base-color, 1px);
+        @include corners(5px);
+		float: left;
+        margin: margin("bottom-right", 10px);
+        padding: padding("top-bottom", 10px);
+		list-style: none;
+		width: $letter-width;
+		height: $letter-height;
+		background: $base-color;
+		color: $base-background;
+		cursor: pointer;
+        text-align: center;
+		&:hover {
+            @include border($base-color, 1px);
+            @include opacity(0.5);
+			background: $base-background;
+			color: $base-color;
+		}
+	}
+}
+
+#my-word {
+	display: block;
+	li {
+        @include font-size($font-size-medium);
+		position: relative;
+		list-style: none;
+		margin: 0;
+		display: inline-block;
+		padding: padding("left-right", 15px);
+	}
+}
+
+.active {
+	@include opacity(0.5 !important);
+	cursor: default;
+	&:hover {
+        @include opacity(0.5);
+	}
+}
+
+#mylives {
+    @include font-size($font-size-medium);
+	text-align: center;
+	display: block;
+}
+
+button {
+    @include font-size($font-size-small);
+    @include border($base-color, 1px);
+    @include corners(5px);
+	background: $base-background;
+	color: $base-color;
+	text-decoration: none;
+	cursor: pointer;
+	padding: padding("top-bottom", 10px);
+    width: $button-width;
+    height: $button-height;
+	margin: margin("all", 10px);
+	outline: none;
+	&:hover {
+        @include border($base-color, 1px);
+        @include opacity(0.5);
+		background: $base-color;
+		color: $base-color;
+	}
+}
+
+@media (max-width: 767px) {
+	#alphabet {
+		padding: padding("left", 15px);
+	}
+}
+
+@media (max-width: 480px) {
+	#alphabet {
+		padding: padding("left", 25px);
+	}
+}

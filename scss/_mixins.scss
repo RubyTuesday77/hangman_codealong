@@ -1,0 +1,57 @@
+@import "variables";
+@import "functions";
+
+// Style for h1, h2
+@mixin header {
+    font-family: $secondary-font-family;
+    font-weight: 100;
+    text-transform: uppercase;
+    margin: margin("top-bottom", 10px);
+}
+
+
+@mixin clear {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin corners($radius) {
+    @if ($radius == 0) {
+        border-radius: 0;
+    } @else if (type-of($radius) == 'number' and unit($radius) == 'px') {
+        border-radius: $radius;
+    } @else if (type-of($radius) == 'number' and unit($radius) == 'em') {
+        border-radius: $radius;
+    } @else {
+        @error "Radius must be in either pixels (px) or ems (em)";
+    }
+}
+
+@mixin border($color, $width) {
+    @if type-of($width) == "number" and (unit($width) == "px" or unit($width) == "em") {
+        @if type-of($color) == "color" {
+            border: solid $width $color;
+        } @else {
+            @error "Color must be a valid color value (e.g. #ff0000 or red)";
+        }
+    } @else {
+        @error "Width must be a number followed by 'px' or 'em' (e.g. 10px)";
+    }
+}
+
+
+@mixin font-size($size) {
+    font-size: $size;
+}
+
+
+@mixin opacity($opacity) {
+    opacity: $opacity;
+	transition: all 0.3s ease-in-out;
+}
+
+
+    

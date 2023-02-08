@@ -1,0 +1,59 @@
+@function padding($location, $size) {
+    $padding: 0 0 0 0;
+    @if $location == "top" {
+        $padding: $size 0 0 0;
+    } @else if $location == "right" {
+        $padding: 0 $size 0 0;
+    } @else if $location == "bottom" {
+        $padding: 0 0 $size 0;
+    } @else if $location == "left" {
+        $padding: 0 0 0 $size;
+    } @else if $location == "top-bottom" {
+        $padding: $size 0 $size 0;
+    } @else if $location == "left-right" {
+        $padding: 0 $size 0 $size;
+    } @else if $location == "top-right" {
+        $padding: $size $size 0 0;
+    } @else if $location == "top-left" {
+        $padding: $size 0 0 $size;
+    } @else if $location == "bottom-right" {
+        $padding: 0 $size $size 0;
+    } @else if $location == "bottom-left" {
+        $padding: 0 0 $size $size;
+    } @else if $location == "all" {
+        $padding: $size $size $size $size;
+    } @else {
+        @error "Invalid location value: #{$location}. Allowed values are: top, right, bottom, left, top-bottom, left-right, top-right, top-left, bottom-right, bottom-left, all.";
+    }
+    @return $padding;
+}
+
+@function margin($location, $size) {
+    $margin: 0 0 0 0;
+    @if $location == "top" {
+        $margin: $size 0 0 0;
+    } @else if $location == "right" {
+        $margin: 0 $size 0 0;
+    } @else if $location == "bottom" {
+        $margin: 0 0 $size 0;
+    } @else if $location == "left" {
+        $margin: 0 0 0 $size;
+    } @else if $location == "top-bottom" {
+        $margin: $size 0 $size 0;
+    } @else if $location == "left-right" {
+        $margin: 0 $size 0 $size;
+    } @else if $location == "top-right" {
+        $margin: $size $size 0 0;
+    } @else if $location == "top-left" {
+        $margin: $size 0 0 $size;
+    } @else if $location == "bottom-right" {
+        $margin: 0 $size $size 0;
+    } @else if $location == "bottom-left" {
+        $margin: 0 0 $size $size;
+    } @else if $location == "all" {
+        $margin: $size $size $size $size;
+    } @else {
+        @error "Invalid location value: #{$location}. Allowed values are: top, right, bottom, left, top-bottom, left-right, top-right, top-left, bottom-right, bottom-left, all.";
+    }
+    @return $margin;
+}

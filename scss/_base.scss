@@ -1,0 +1,11 @@
+@import "variables";
+@import "mixins";
+
+body {
+    @include font-size($font-size-medium);
+    background: $base-background;
+    font-family: $base-font-family;
+    color: $base-color;
+    height: 100%;
+    text-align: center;
+}
