@@ -44,6 +44,7 @@ window.onload = function () {
     var myStickman = document.getElementById("stickman");
     var wordHolder = document.getElementById("hold");
     var correct = document.createElement("ul");
+    var canvas = document.getElementById("canvas");
     // create alphabet ul
     var buttons = function () {
         var letters = document.createElement("ul");
@@ -60,7 +61,8 @@ window.onload = function () {
     // Select category
     var selectCat = function () {
         if (chosenCategory === categories[0]) {
-            categoryName.innerHTML = "The Chosen Category Is Premier League Football Teams";
+            categoryName.innerHTML =
+                "The Chosen Category Is Premier League Football Teams";
         }
         else if (chosenCategory === categories[1]) {
             categoryName.innerHTML = "The Chosen Category Is Films";
@@ -105,19 +107,23 @@ window.onload = function () {
         drawArray[lives]();
     };
     // Hangman
-    var canvas = function () {
-        var context = myStickman.getContext("2d");
+    var canvasFunc = function () {
+        var context = canvas.getContext("2d");
         context.beginPath();
         context.strokeStyle = "#fff";
         context.lineWidth = 2;
     };
     var head = function () {
-        var context = myStickman.getContext("2d");
+        var canvas = document.createElement("canvas");
+        var myStickman = canvas.getContext("2d");
+        var context = myStickman;
         context.beginPath();
         context.arc(60, 25, 10, 0, Math.PI * 2, true);
         context.stroke();
     };
     var draw = function ($pathFromx, $pathFromy, $pathTox, $pathToy) {
+        var canvas = document.createElement("canvas");
+        var context = canvas.getContext("2d");
         context.moveTo($pathFromx, $pathFromy);
         context.lineTo($pathTox, $pathToy);
         context.stroke();
@@ -163,17 +169,18 @@ window.onload = function () {
     ];
     // OnClick Function
     var check = function () {
+        var list = document.querySelector(".list");
         list.onclick = function () {
-            var geuss = this.innerHTML;
+            var guess = this.innerHTML;
             this.setAttribute("class", "active");
             this.onclick = null;
             for (var i = 0; i < word.length; i++) {
-                if (word[i] === geuss) {
-                    guesses[i].innerHTML = geuss;
+                if (word[i] === guess) {
+                    guesses[i].innerHTML = guess;
                     counter += 1;
                 }
             }
-            var j = word.indexOf(geuss);
+            var j = word.indexOf(guess);
             if (j === -1) {
                 lives -= 1;
                 comments();
@@ -187,12 +194,21 @@ window.onload = function () {
     // Play
     var play = function () {
         categories = [
-            ["everton", "liverpool", "swansea", "chelsea", "hull", "manchester-city", "newcastle-united"],
+            [
+                "everton",
+                "liverpool",
+                "swansea",
+                "chelsea",
+                "hull",
+                "manchester-city",
+                "newcastle-united",
+            ],
             ["alien", "dirty-harry", "gladiator", "finding-nemo", "jaws"],
-            ["manchester", "milan", "madrid", "amsterdam", "prague"]
+            ["manchester", "milan", "madrid", "amsterdam", "prague"],
         ];
         chosenCategory = categories[Math.floor(Math.random() * categories.length)];
         word = chosenCategory[Math.floor(Math.random() * chosenCategory.length)];
+        // @ts-ignore
         word = word.replace(/\s/g, "-");
         console.log(word);
         buttons();
@@ -203,10 +219,11 @@ window.onload = function () {
         result();
         comments();
         selectCat();
-        canvas();
+        canvasFunc();
     };
     play();
     // Hint
+    // @ts-ignore
     hint.onclick = function () {
         var hints = [
             [
@@ -233,15 +250,21 @@ window.onload = function () {
                 "Czech Republic capital",
             ],
         ];
+        // @ts-ignore
         var categoryIndex = categories.indexOf(chosenCategory);
+        // @ts-ignore
         var hintIndex = chosenCategory.indexOf(word);
         showClue.innerHTML = "Clue: - " + hints[categoryIndex][hintIndex];
     };
     // Reset
+    // @ts-ignore
     document.getElementById("reset").onclick = function () {
+        // @ts-ignore
         correct.parentNode.removeChild(correct);
+        // @ts-ignore
         letters.parentNode.removeChild(letters);
         showClue.innerHTML = "";
+        // @ts-ignore
         context.clearRect(0, 0, 400, 400);
         play();
     };
