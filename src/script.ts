@@ -1,5 +1,5 @@
 window.onload = function () {
-    var alphabet = [
+    let alphabet = [
         "a",
         "b",
         "c",
@@ -45,6 +45,8 @@ window.onload = function () {
     const myStickman: HTMLElement = document.getElementById("stickman") as HTMLElement;
     const wordHolder: HTMLElement = document.getElementById("hold") as HTMLElement;
     const correct: HTMLElement = document.createElement("ul") as HTMLElement;
+    const canvas: HTMLCanvasElement = document.getElementById("canvas") as HTMLCanvasElement;
+    
     
 
     // create alphabet ul
@@ -110,21 +112,25 @@ window.onload = function () {
     };
 
     // Hangman
-    const canvas = function () {
-        const context = myStickman.getContext("2d");
+    const canvasFunc = function () {
+        let context: CanvasRenderingContext2D = canvas.getContext("2d") as CanvasRenderingContext2D;
         context.beginPath();
         context.strokeStyle = "#fff";
         context.lineWidth = 2;
     };
 
     const head = function () {
-        const context = myStickman.getContext("2d");
+        let canvas = document.createElement("canvas");
+        let myStickman = canvas.getContext("2d");
+        let context: CanvasRenderingContext2D = myStickman as CanvasRenderingContext2D;
         context.beginPath();
         context.arc(60, 25, 10, 0, Math.PI * 2, true);
         context.stroke();
     };
 
     const draw = function ($pathFromx: any, $pathFromy: any, $pathTox: any, $pathToy: any) {
+        let canvas: HTMLCanvasElement = document.createElement("canvas") as HTMLCanvasElement;
+        let context: CanvasRenderingContext2D = canvas.getContext("2d") as CanvasRenderingContext2D;
         context.moveTo($pathFromx, $pathFromy);
         context.lineTo($pathTox, $pathToy);
         context.stroke();
@@ -181,17 +187,18 @@ window.onload = function () {
 
     // OnClick Function
     const check = function () {
+        let list: HTMLElement = document.querySelector(".list") as HTMLElement;
         list.onclick = function () {
-            var geuss = this.innerHTML;
-            this.setAttribute("class", "active");
+            let guess: string = (this as HTMLElement).innerHTML;
+            (this as HTMLElement).setAttribute("class", "active");
             this.onclick = null;
             for (var i = 0; i < word.length; i++) {
-                if (word[i] === geuss) {
-                    guesses[i].innerHTML = geuss;
+                if (word[i] === guess) {
+                    guesses[i].innerHTML = guess;
                     counter += 1;
                 }
             }
-            var j = word.indexOf(geuss);
+            var j = word.indexOf(guess);
             if (j === -1) {
                 lives -= 1;
                 comments();
@@ -223,7 +230,7 @@ window.onload = function () {
         result();
         comments();
         selectCat();
-        canvas();
+        canvasFunc();
     };
 
     play();
