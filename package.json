@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "name": "hangman_codealong",
+  "version": "1.0.0",
+  "main": "script-initial.js",
+  "devDependencies": {
+    "@types/node": "^18.13.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RubyTuesday77/hangman_codealong.git"
+  },
+  "author": "Tyson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RubyTuesday77/hangman_codealong/issues"
+  },
+  "homepage": "https://github.com/RubyTuesday77/hangman_codealong#readme",
+  "description": ""
+}
